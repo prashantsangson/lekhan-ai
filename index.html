@@ -79,24 +79,25 @@
 
   <script>
     async function generate() {
-      const prompt = document.getElementById('prompt').value;
-      const type = document.getElementById('type').value;
-      const lang = document.getElementById('lang').innerText;
+  const prompt = document.getElementById('prompt').value;
+  const type = document.getElementById('type').value;
+  const lang = document.getElementById('lang').innerText;
 
-      if (!prompt.trim()) {
-        alert("Please enter a topic or prompt.");
-        return;
-      }
+  if (!prompt.trim()) {
+    alert("Please enter a topic or prompt.");
+    return;
+  }
 
-      const response = await fetch('/api/generate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt, type, lang })
-      });
+  const response = await fetch('/api/generate', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt, type, lang })
+  });
 
-      const data = await response.json();
-      document.getElementById('output').value = data.result || data.error || "Error.";
-    }
+  const data = await response.json();
+  document.getElementById('output').value = data.result || data.error || "Error.";
+}
+
 
     function copyText() {
       const text = document.getElementById('output');
